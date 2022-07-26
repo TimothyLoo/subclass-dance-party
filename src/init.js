@@ -16,6 +16,13 @@ $(document).ready(function() {
      * to the stage.
      */
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    console.log(this)
+    console.log('data: ', $(this).data('dancer-maker-function-name'), typeof $(this).data('dancer-maker-function-name'))
+    console.log('dancerMakerFunctionName: ', dancerMakerFunctionName)
+    // get the maker function for the kind of dancer we're supposed to make
+    console.log(window)
+    console.log('dancerMakerFunc: ', window[dancerMakerFunctionName])
+    console.log(this)
 
     // get the maker function for the kind of dancer we're supposed to make
     var dancerMakerFunction = window[dancerMakerFunctionName];
