@@ -1,5 +1,9 @@
 $(document).ready(function() {
   window.dancers = [];
+  var linedUpPosArr = [];
+  var randomPosArr = [];
+  var topPos = 50;
+  var isLinedUp = false;
 
   $('.addDancerButton').on('click', function(event) {
     /* This function sets up the click handlers for the create-dancer
@@ -21,14 +25,46 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-
     var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
-    console.log(dancer.$node);
+
+    let randTopPos = Number(dancer.$node.css('top').slice(0, dancer.$node.css('top').length - 2));
+    let randLeftPos = Number(dancer.$node.css('left').slice(0, dancer.$node.css('left').length - 2));
+
+    window.dancers.push(dancer);
+    linedUpPosArr.push([topPos, 0]);
+    randomPosArr.push([randTopPos, randLeftPos]);
+    topPos += 100;
+
     $('body').append(dancer.$node);
+  });
+
+  // This function lines up all the dancers
+  $('.lineUpButton').on('click', function(event) {
+    // I - array of dancers
+    // O - a top and left position
+
+    // If lined up is false
+    if (!isLinedUp) {
+      // Call set position on each dancer on lined up array
+      for (let i = 0; i < window.dancers.length; i++) {
+        let curDancer = window.dancers[i];
+        curDancer.setPosition(linedUpPosArr[i][0], linedUpPosArr[i][1]);
+      }
+      // Change lined up to true
+      isLinedUp = true;
+    } else { // else
+      // Call set position on each dancer on rand pos array
+      for (let i = 0; i < window.dancers.length; i++) {
+        let curDancer = window.dancers[i];
+        curDancer.setPosition(randomPosArr[i][0], randomPosArr[i][1]);
+      }
+      // Change lined up to false
+      isLinedUp = false;
+    }
   });
 });
 

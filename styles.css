@@ -21,18 +21,13 @@ body, a:link, a:visited, a:active{
   background-color: #777;
 }
 .dancer{
+  /*
   border:10px solid red;
   border-radius:10px;
+  */
   position:absolute;
 }
 
 .slideDancer{
-  width: 50px;
-  height: 100px;
-  border:1px solid blue;
   position:absolute;
-}
-
-.rotate {
-  transform: rotate(90deg);
 }

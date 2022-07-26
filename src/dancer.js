@@ -3,7 +3,7 @@ var makeDancer = function (top, left, timeBetweenSteps) {
 
   // Properties
   // use jQuery to create an HTML <span> tag
-  this.$node = $('<span class="dancer"></span>');
+  this.$node = $('<img src="gru.gif" class="dancer">');
 
   // lost reference to timeBetweenSteps due to lost closure, create reference
   this.timeBetweenSteps = timeBetweenSteps;
